@@ -1,0 +1,42 @@
+create database QuanLyBanHang;
+use QuanLyBanHang; 
+create table Customer (
+cId int primary key auto_increment,
+cName varchar(50),
+cAge int
+);
+create table Oder (
+oId int primary key auto_increment,
+cId int not null,
+oDate datetime,
+oTotalPrice double,
+foreign key(cId) references Customer(cId)
+);
+create table Product (
+pId int primary key auto_increment,
+pName varchar(50) not null,
+pPrice double
+);
+create table OderDetail (
+oId int not null,
+pId int not null,
+odQTY varchar(50),
+foreign key(oId) references Oder(oId),
+foreign key(pId) references Product(pId)
+);
+insert into Customer (cId, cName, cAge)
+values (cId, "Hoang1", 25),
+(cId, "Hoang2", 26),
+(cId, "Hoang3", 27);
+
+insert into Product (pId, pName, pPrice)
+values (pId, "A", 10.1),
+(pId, "B", 10.2),
+(pId, "C", 10.3);
+
+insert into Oder (oId, cId, oDate, oTotalPrice)
+values (oId, 1, "2023-02-24", 100.1);
+
+insert into OderDetail (oId, pId, odQTY)
+values (1, 1, "DDD"),
+ (1, 1, "DDCD");
